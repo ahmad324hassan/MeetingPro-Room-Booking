@@ -1,6 +1,6 @@
 #Ajout d'un nouveau client
 
-class Nouveau_Client:
+class New_Customer:
     def __init__(self, name: str, surname: str, email: str):
         self.name = name
         self.surname = surname
@@ -19,7 +19,7 @@ class type_of_room:
         return f"Room Types: Standard: {self.Standard}, Conference: {self.Conférence}, IT: {self.Informatique}"
 
 
-class Nouvelle_Salle:
+class New_Room:
     def __init__(self, id: int, capacity: int, room: type_of_room):
         self.id = id
         self.capacity = capacity
@@ -29,7 +29,7 @@ class Nouvelle_Salle:
 
 #about d'une nouvelle réservation de salle
 
-class Reserver_une_salle:
+class Reserve_a_room:
     def __init__(self, id: int, date: int, début: int, fin: int, client: Nouveau_Client, salle_dispo: Nouvelle_Salle):
         self.id = id
         self.date = date
@@ -55,6 +55,6 @@ class Reservation:
     
 
 #Affichage d'informations
-class Afficher_les_informations:
+#class Afficher_les_informations:
     
 
