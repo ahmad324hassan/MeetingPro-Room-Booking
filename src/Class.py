@@ -1,15 +1,17 @@
-#Ajout d'un nouveau client
+from uuid import uuid4
+
+#Add a new customer
 
 class New_Customer:
-    def __init__(self, name: str, surname: str, email: str):
+    def __init__(self, name: str, surname: str, email: str, id: str):
+        self.id = str(uuid4())
         self.name = name
         self.surname = surname
         self.email = email
     def __str__(self):
-        return f"Client: {self.name} {self.surname}, Email: {self.email}"
+        return f"Client: {self.name} {self.surname}, Email: {self.email}, ID: {self.id}"
     
-#Ajout d'une nouvelle salle
-
+#Add a new room
 class type_of_room:
     def __init__(self, Standard: str, Conférence: str, Informatique: str):
         self.Standard = Standard
@@ -18,7 +20,7 @@ class type_of_room:
     def __str__(self):  
         return f"Room Types: Standard: {self.Standard}, Conference: {self.Conférence}, IT: {self.Informatique}"
 
-
+#Add a new room with capacity
 class New_Room:
     def __init__(self, id: int, capacity: int, room: type_of_room):
         self.id = id
@@ -27,7 +29,7 @@ class New_Room:
     def __str__(self):
         return f"Room ID: {self.id}, Capacity: {self.capacity}, Type: {self.room}"
 
-#about d'une nouvelle réservation de salle
+#Reserve a room
 
 class Reserve_a_room:
     def __init__(self, id: int, date: int, début: int, fin: int, client: Nouveau_Client, salle_dispo: Nouvelle_Salle):
@@ -40,7 +42,7 @@ class Reserve_a_room:
     def __str__(self):
         return f"Reservation ID: {self.id}, Date: {self.fin}, Time: {self.fin}, Client: {self.client}, Room: {self.salle_dispo}"
     
-#Information sur la réservation
+#Information about a reservation
 class Reservation:
     def __init__(self, msg: str, client: Nouveau_Client, début: Reserver_une_salle, fin: Reserver_une_salle, durée: int, salle: Nouvelle_Salle, capacité: Nouvelle_Salle):
         self.capacité = capacité
