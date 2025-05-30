@@ -52,7 +52,7 @@ class Database:
         self.data['rooms'].append(room.room_infos())
         self.save()
 
-    def add_reservation(self, reservation: reservation.New_Reservation):
+    def add_reservation(self, reservation: reservation.Reserve_a_room):
         for r in self.data['reservations']:
             if r['id'] == reservation.id_reservation:
                 raise ValueError("This reservation already exists.")
