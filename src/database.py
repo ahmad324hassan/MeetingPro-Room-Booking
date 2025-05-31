@@ -52,10 +52,18 @@ class Database: # This class manages the database operations for customers, room
         self.save()
 
     def add_reservation(self, reservation: reservation.Reserve_a_room):
+        # Génère un id unique si absent
+        reservation_id = getattr(reservation, "id_reservation", None)
+        if not reservation_id:
+            reservation.id_reservation = str(uuid.uuid4())
         for r in self.data['reservations']:
-            if r['id'] == reservation.id_reservation:
+            if r.get('id', None) == reservation.id_reservation:
                 raise ValueError("This reservation already exists.")
-        self.data['reservations'].append(reservation.reservation_infos())
+        # Ajoute l'id dans le dictionnaire de la réservation
+        res_dict = reservation.reservation_infos()
+        if 'id' not in res_dict:
+            res_dict['id'] = reservation.id_reservation
+        self.data['reservations'].append(res_dict)
         self.save()
 
 
@@ -79,12 +87,35 @@ class Database: # This class manages the database operations for customers, room
     def get_rooms(self):
         rooms_list = []
         for r in self.data['rooms']:
+            r = r.copy()
+            if 'room_type' in r:
+                r['room'] = r.pop('room_type')
+            # Correction ici : si r['room'] est un dict, on le convertit en type_of_room
+            from room import type_of_room
+            if isinstance(r['room'], dict):
+                r['room'] = type_of_room(
+                    Standard=r['room'].get('Standard', 'No'),
+                    Conference=r['room'].get('Conference', 'No'),
+                    Informatics=r['room'].get('Informatics', 'No')
+                )
             rooms_list.append(room.New_Room(**r))
         return rooms_list
 
     def get_reservations(self):
         reservations_list = []
         for r in self.data['reservations']:
-            reservations_list.append(reservation.Reserve_a_room(**r))
+            r = r.copy()
+            # On retire la clé 'id' pour ne pas la passer au constructeur
+            id_reservation = r.pop('id', None)
+            reservations_list.append(
+                reservation.Reserve_a_room(
+                    r['room_id'],
+                    r['id_customer'],
+                    r['date'],
+                    r['debut'],
+                    r['fin'],
+                    id_reservation=id_reservation
+                )
+            )
         return reservations_list
 

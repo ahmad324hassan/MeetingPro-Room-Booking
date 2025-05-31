@@ -2,9 +2,9 @@
     "customers": [
         {
             "id": "fa7fae7f-a8f5-4d9d-a169-21a16dc8eb4f",
-            "name": "Baskara ",
-            "surname": "Steven",
-            "email": "aaaaaaa@gmail.com"
+            "name": "Hassan ",
+            "surname": "Ahmad",
+            "email": "ahmad.hassan@uha.fr"
         },
         {
             "id": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
@@ -13,16 +13,16 @@
             "email": "dorianbismuth@gmail.com"
         },
         {
-            "id": "1d31c20a-d1b5-45a7-9f17-a53a215d9ba4",
-            "name": "Pinguin",
-            "surname": "Batman",
-            "email": "batman@uha.fr"
+            "id": "8827d96a-0863-4601-b6b4-9df065f28a40",
+            "name": "1",
+            "surname": "3",
+            "email": "aaaaaaaaa@gmail.com"
         },
         {
-            "id": "bcf8e9e5-9a98-4391-9ff1-3354260f3c09",
-            "name": "Insomniac",
-            "surname": "Batman",
-            "email": "batman2@uha.fr"
+            "id": "af123617-8223-4e39-920b-63331ba65230",
+            "name": "Bismuth",
+            "surname": "Dorian",
+            "email": "dorian.bismuth@uha.fr"
         }
     ],
     "rooms": [
@@ -34,7 +34,91 @@
                 "Conference": "Yes",
                 "Informatics": "No"
             }
+        },
+        {
+            "id": "Standard1.4",
+            "capacity": 4,
+            "room_type": {
+                "Standard": "Yes",
+                "Conference": "No",
+                "Informatics": "No"
+            }
+        },
+        {
+            "id": "Standard1.5",
+            "capacity": 4,
+            "room_type": {
+                "Standard": "Yes",
+                "Conference": "No",
+                "Informatics": "No"
+            }
+        },
+        {
+            "id": "Informatique1.0",
+            "capacity": 4,
+            "room_type": {
+                "Standard": "No",
+                "Conference": "No",
+                "Informatics": "Yes"
+            }
+        },
+        {
+            "id": "Conference1.2",
+            "capacity": 10,
+            "room_type": {
+                "Standard": "No",
+                "Conference": "Yes",
+                "Informatics": "No"
+            }
         }
     ],
-    "reservations": []
+    "reservations": [
+        {
+            "room_id": "Standard1.5",
+            "id_customer": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "date": "31/05/2025",
+            "debut": "15:00",
+            "fin": "17:00"
+        },
+        {
+            "room_id": "Standard1.5",
+            "id_customer": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "date": "31/05/2025",
+            "debut": "19:00",
+            "fin": "20:00",
+            "id": "4a011ce2-7af6-4e93-9fdf-2f26021b6581"
+        },
+        {
+            "room_id": "Standard1.5",
+            "id_customer": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "date": "31/05/2025",
+            "debut": "17:00",
+            "fin": "19:00",
+            "id": "423b8860-ea68-40ed-afab-3eba65de4f6c"
+        },
+        {
+            "room_id": "Conference1.2",
+            "id_customer": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "date": "31/05/2025",
+            "debut": "17:00",
+            "fin": "19:00",
+            "id": "17b9723e-5b36-4b5d-9ad0-7212a1d05c71"
+        },
+        {
+            "room_id": "Informatique1.0",
+            "id_customer": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "date": "31/05/2025",
+            "debut": "10:00",
+            "fin": "11:00",
+            "id": "2f4b46fa-f533-480e-b8a0-6fb39014e503"
+        },
+        {
+            "room_id": "Standard1.5",
+            "id_customer": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "date": "30/05/2025",
+            "debut": "15:00",
+            "fin": "17:00",
+            "id": "22f8d3c7-a315-4bd9-a2d1-8eba7bf634eb"
+        }
+    ]
 }

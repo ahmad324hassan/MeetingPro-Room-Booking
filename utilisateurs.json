@@ -2,12 +2,12 @@
     "clients": [
         {
             "id": "b82b44b9-26d4-4ec7-b408-0a5305d80096",
-            "nom": "Dorian Bismuth",
+            "nom": "Bismuth Dorian",
             "email": "dorian.bismuth@uha.fr"
         },
         {
             "id": "84e9badb-2a0d-473d-909b-36a86db91413",
-            "nom": "Steven Baskara",
+            "nom": "Baskara Steven",
             "email": "jvaiste_retrouver@gmail.com"
         }
     ],
