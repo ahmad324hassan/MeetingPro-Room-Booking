@@ -1,3 +1,4 @@
+# This class defines all the different types of rooms
 class type_of_room:
     def __init__(self, Standard: str, Conference: str, Informatics: str):
         self.Standard = Standard
@@ -7,7 +8,7 @@ class type_of_room:
         return f"Room Types: Standard: {self.Standard}, Conference: {self.Conference}, IT: {self.Informatics}"
     
 
-
+# This class defines a new room with its ID, capacity, and type of room (Standard, Conference, Informatics)
 class New_Room:
     def __init__(self, id: int, capacity: int, room: type_of_room):
         self.id = id

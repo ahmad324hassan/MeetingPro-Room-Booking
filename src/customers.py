@@ -1,5 +1,6 @@
 import uuid
 
+# create a new class for adding a new customer with a unique ID and all necessary attributes
 class New_Customer:
     def __init__(self, name: str, surname: str, email: str, id_customer: str = None):
         self.id_customer = id_customer or str(uuid.uuid4())

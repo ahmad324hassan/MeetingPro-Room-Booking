@@ -1,4 +1,5 @@
 import json
+import uuid
 from uuid import uuid4
 
 import customers
@@ -16,6 +17,7 @@ class Database: # This class manages the database operations for customers, room
             "reservations": []
         }
         self.load() # Load the data from the JSON file when the class is initialized
+        
         
     # Load the data from the JSON file
     def load(self): 
@@ -42,27 +44,25 @@ class Database: # This class manages the database operations for customers, room
             if c['id'] == customer.id_customer: # Check if the customer already exists in the database
                 raise ValueError("This customer already exists.")
         self.data['customers'].append(customer.customer_infos())
-        self.save()
+        self.save() # Save the updated data to the JSON file (function defined below)
 
-    def add_room(self, room: room.New_Room):
+    def add_room(self, room: room.New_Room): # This function adds a new room to the database
         for r in self.data['rooms']:
-            if r['id'] == room.id:
+            if r['id'] == room.id: # Check if the room already exists in the database and raise an error if it does
                 raise ValueError("This room already exists.")
-        self.data['rooms'].append(room.room_infos())
+        self.data['rooms'].append(room.room_infos()) # Add the room information to the database if it doesn't already exist
         self.save()
 
-    def add_reservation(self, reservation: reservation.Reserve_a_room):
-        # Génère un id unique si absent
-        reservation_id = getattr(reservation, "id_reservation", None)
+    def add_reservation(self, reservation: reservation.Reserve_a_room): # This function adds a new reservation to the database
+        reservation_id = getattr(reservation, "id_reservation", None) # Get the reservation ID if it exists, otherwise set it to None
         if not reservation_id:
-            reservation.id_reservation = str(uuid.uuid4())
+            reservation.id_reservation = str(uuid.uuid4())#if no ID exists, generate a new unique ID for the reservation
         for r in self.data['reservations']:
             if r.get('id', None) == reservation.id_reservation:
-                raise ValueError("This reservation already exists.")
-        # Ajoute l'id dans le dictionnaire de la réservation
+                raise ValueError("This reservation already exists.") # Check if the reservation already exists in the database and raise an error if it does
         res_dict = reservation.reservation_infos()
         if 'id' not in res_dict:
-            res_dict['id'] = reservation.id_reservation
+            res_dict['id'] = reservation.id_reservation #If the reservation ID is not in the dictionary, add it
         self.data['reservations'].append(res_dict)
         self.save()
 
@@ -75,7 +75,7 @@ class Database: # This class manages the database operations for customers, room
 
     # Getters for customers, rooms, and reservations
 
-    def get_customers(self):
+    def get_customers(self): # This function retrieves the list of customers from the database
         customers_list = []
         for c in self.data['customers']:
             if 'id' in c:
@@ -84,30 +84,28 @@ class Database: # This class manages the database operations for customers, room
             customers_list.append(customers.New_Customer(**c))
         return customers_list
 
-    def get_rooms(self):
+    def get_rooms(self): # This function retrieves the list of rooms from the database
         rooms_list = []
         for r in self.data['rooms']:
             r = r.copy()
             if 'room_type' in r:
                 r['room'] = r.pop('room_type')
-            # Correction ici : si r['room'] est un dict, on le convertit en type_of_room
             from room import type_of_room
-            if isinstance(r['room'], dict):
+            if isinstance(r['room'], dict): # If the room is a dictionary, convert it to a type_of_room object
                 r['room'] = type_of_room(
                     Standard=r['room'].get('Standard', 'No'),
                     Conference=r['room'].get('Conference', 'No'),
                     Informatics=r['room'].get('Informatics', 'No')
                 )
-            rooms_list.append(room.New_Room(**r))
+            rooms_list.append(room.New_Room(**r)) # Create a New_Room object with the room data
         return rooms_list
 
-    def get_reservations(self):
+    def get_reservations(self): # This function retrieves the list of reservations from the database
         reservations_list = []
         for r in self.data['reservations']:
             r = r.copy()
-            # On retire la clé 'id' pour ne pas la passer au constructeur
-            id_reservation = r.pop('id', None)
-            reservations_list.append(
+            id_reservation = r.pop('id', None)# If the reservation has an ID, remove it from the dictionary
+            reservations_list.append( # Create a Reserve_a_room object with the reservation data
                 reservation.Reserve_a_room(
                     r['room_id'],
                     r['id_customer'],
