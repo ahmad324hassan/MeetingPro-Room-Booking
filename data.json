@@ -1,0 +1,40 @@
+{
+    "customers": [
+        {
+            "id": "fa7fae7f-a8f5-4d9d-a169-21a16dc8eb4f",
+            "name": "Baskara ",
+            "surname": "Steven",
+            "email": "aaaaaaa@gmail.com"
+        },
+        {
+            "id": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
+            "name": "Bismuth",
+            "surname": "Dorian",
+            "email": "dorianbismuth@gmail.com"
+        },
+        {
+            "id": "1d31c20a-d1b5-45a7-9f17-a53a215d9ba4",
+            "name": "Pinguin",
+            "surname": "Batman",
+            "email": "batman@uha.fr"
+        },
+        {
+            "id": "bcf8e9e5-9a98-4391-9ff1-3354260f3c09",
+            "name": "Insomniac",
+            "surname": "Batman",
+            "email": "batman2@uha.fr"
+        }
+    ],
+    "rooms": [
+        {
+            "id": "test3.5",
+            "capacity": 8,
+            "room_type": {
+                "Standard": "No",
+                "Conference": "Yes",
+                "Informatics": "No"
+            }
+        }
+    ],
+    "reservations": []
+}

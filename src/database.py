@@ -7,27 +7,28 @@ import reservation
 
 # Database class to manage customers, rooms, and reservations
 
-class Database:
+class Database: # This class manages the database operations for customers, rooms, and reservations
     def __init__(self, filepath: str):
-        self.filepath = filepath
+        self.filepath = filepath # The path to the JSON file where the data will be stored
         self.data = {
             "customers": [],
             "rooms": [],
             "reservations": []
         }
-        self.load()
+        self.load() # Load the data from the JSON file when the class is initialized
         
+    # Load the data from the JSON file
     def load(self): 
         try:
-            with open(self.filepath, 'r') as file: # Load the JSON data from the file
-                self.data = json.load(file)
-        except FileNotFoundError:
+            with open(self.filepath, 'r') as file: # If the file exists, read the JSON data from it
+                self.data = json.load(file) # Ensure that the file exists and is readable
+        except FileNotFoundError: # Else if the file does not exist, create a new one
             self.data = {
                 "customers": [],
                 "rooms": [],
                 "reservations": []
             }
-        except json.JSONDecodeError:    
+        except json.JSONDecodeError:    # Else if there is an error decoding the JSON data, start with an empty database
             print("Error decoding JSON from the file. Starting with an empty database.")
             self.data = {
                 "customers": [],
@@ -35,12 +36,10 @@ class Database:
                 "reservations": []
             }
 
-    # Add methods to add customers, rooms, and reservations
-
-
-    def add_customer(self, customer: customers.New_Customer):
-        for c in self.data['customers']:
-            if c['id'] == customer.id_customer:
+    # Methods to add new customers, rooms, and reservations
+    def add_customer(self, customer: customers.New_Customer):# This method adds a new customer to the database
+        for c in self.data['customers']: # Iterate through existing customers list to check for duplicates                         
+            if c['id'] == customer.id_customer: # Check if the customer already exists in the database
                 raise ValueError("This customer already exists.")
         self.data['customers'].append(customer.customer_infos())
         self.save()
@@ -71,6 +70,9 @@ class Database:
     def get_customers(self):
         customers_list = []
         for c in self.data['customers']:
+            if 'id' in c:
+                c = c.copy()
+                c['id_customer'] = c.pop('id')
             customers_list.append(customers.New_Customer(**c))
         return customers_list
 

@@ -1,0 +1,66 @@
+{
+    "clients": [
+        {
+            "id": "b82b44b9-26d4-4ec7-b408-0a5305d80096",
+            "nom": "Dorian Bismuth",
+            "email": "dorian.bismuth@uha.fr"
+        },
+        {
+            "id": "84e9badb-2a0d-473d-909b-36a86db91413",
+            "nom": "Steven Baskara",
+            "email": "jvaiste_retrouver@gmail.com"
+        }
+    ],
+    "salles": [
+        {
+            "id": "bd70163d-3a42-4035-a8bb-2a2c9d31300b",
+            "type_salle": "standard",
+            "capacite": 4
+        },
+        {
+            "id": "Salle 1 Info",
+            "type_salle": "informatique",
+            "capacite": 4
+        },
+        {
+            "id": "Salle de conf1",
+            "type_salle": "conference",
+            "capacite": 7
+        },
+        {
+            "id": "Salle de DODO",
+            "type_salle": "conference",
+            "capacite": 4
+        }
+    ],
+    "reservations": [
+        {
+            "id": "7ca0b4da-12ab-4845-ba2e-33d17d7b30d3",
+            "client_id": "b82b44b9-26d4-4ec7-b408-0a5305d80096",
+            "salle_id": "bd70163d-3a42-4035-a8bb-2a2c9d31300b",
+            "date_debut": "2025-05-30T15:07:25.479862",
+            "date_fin": "2025-05-30T17:07:25.479862"
+        },
+        {
+            "id": "acb9ac1c-d24d-4a6b-980b-bbb05fd1a4e2",
+            "client_id": "84e9badb-2a0d-473d-909b-36a86db91413",
+            "salle_id": "Salle de conf1",
+            "date_debut": "2025-05-30T15:00:00",
+            "date_fin": "2025-05-30T17:00:00"
+        },
+        {
+            "id": "57ee53b1-3e2e-43c6-aea3-eb143430f15f",
+            "client_id": "b82b44b9-26d4-4ec7-b408-0a5305d80096",
+            "salle_id": "Salle 1 Info",
+            "date_debut": "2025-05-31T09:00:00",
+            "date_fin": "2025-05-31T09:30:00"
+        },
+        {
+            "id": "8256c31d-9fe4-40f1-b40f-a5878921130d",
+            "client_id": "b82b44b9-26d4-4ec7-b408-0a5305d80096",
+            "salle_id": "Salle de DODO",
+            "date_debut": "2025-06-01T10:00:00",
+            "date_fin": "2025-06-01T11:00:00"
+        }
+    ]
+}
