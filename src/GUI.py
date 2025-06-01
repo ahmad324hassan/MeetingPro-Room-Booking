@@ -19,17 +19,23 @@ class MeetingProApp(tk.Tk):
         self.tab_control.pack(expand=1, fill="both")  # Show the tab control
         self.tab_control.select(self.tabs['Home'])  # Select the Home tab by default
 
-        # Define a blue style for all step buttons for better UI consistency
+        # Define a black style for all step buttons and widgets for better UI consistency
         style = ttk.Style(self)
-        style.configure("Blue.TButton",
-            foreground="white",
-            background="#1976D2",
+        style.configure(
+            "Black.TButton",
+            foreground="black",           # Black text for all buttons
+            background="#E0E0E0",         # Light gray background for contrast
             font=("Segoe UI", 10, "bold")
         )
-        style.map("Blue.TButton",
-            foreground=[('active', 'white')],
-            background=[('active', '#1565C0')]
+        style.map(
+            "Black.TButton",
+            foreground=[('active', 'black'), ('disabled', 'gray50')],
+            background=[('active', '#C0C0C0'), ('disabled', '#F0F0F0')]
         )
+        style.configure("TLabel", foreground="black")  # All labels in black
+        style.configure("TEntry", foreground="black")  # All entry text in black
+        style.configure("TCombobox", foreground="black")  # All combobox text in black
+        style.configure("TRadiobutton", foreground="black")  # All radio button text in black
 
     def create_main_tabs(self):  # Create and initialize all main navigation tabs
         """Create and initialize all main navigation tabs."""
@@ -51,9 +57,9 @@ class MeetingProApp(tk.Tk):
 
     def tab_home(self, frame):  # Home tab: navigation buttons to other main tabs
         """Home tab: navigation buttons to other main tabs."""
-        btn_add = ttk.Button(frame, text="Add", command=lambda: self.switch_tab("Add"), style="Blue.TButton")
-        btn_book = ttk.Button(frame, text="Book", command=lambda: self.switch_tab("Book"), style="Blue.TButton")
-        btn_display = ttk.Button(frame, text="Display", command=lambda: self.switch_tab("Display"), style="Blue.TButton")
+        btn_add = ttk.Button(frame, text="Add", command=lambda: self.switch_tab("Add"), style="Black.TButton")
+        btn_book = ttk.Button(frame, text="Book", command=lambda: self.switch_tab("Book"), style="Black.TButton")
+        btn_display = ttk.Button(frame, text="Display", command=lambda: self.switch_tab("Display"), style="Black.TButton")
         btn_add.pack(pady=30)
         btn_book.pack(pady=30)
         btn_display.pack(pady=30)
@@ -63,8 +69,8 @@ class MeetingProApp(tk.Tk):
         for widget in frame.winfo_children():
             widget.destroy()  # Clear the frame before adding widgets
         # Buttons to choose between adding a customer or a room
-        btn_customer = ttk.Button(frame, text="Add new customer", command=lambda: self.show_customer_form(frame), style="Blue.TButton")
-        btn_room = ttk.Button(frame, text="Add new room", command=lambda: self.show_room_form(frame), style="Blue.TButton")
+        btn_customer = ttk.Button(frame, text="Add new customer", command=lambda: self.show_customer_form(frame), style="Black.TButton")
+        btn_room = ttk.Button(frame, text="Add new room", command=lambda: self.show_room_form(frame), style="Black.TButton")
         btn_customer.pack(pady=20)
         btn_room.pack(pady=20)
 
@@ -104,7 +110,7 @@ class MeetingProApp(tk.Tk):
             """Cancel and return to add tab."""
             self.tab_add(frame)
 
-        ttk.Button(frame, text="Validate", command=validate, style="Blue.TButton").grid(row=3, column=0, pady=10)
+        ttk.Button(frame, text="Validate", command=validate, style="Black.TButton").grid(row=3, column=0, pady=10)
         ttk.Button(frame, text="Cancel", command=cancel).grid(row=3, column=1, pady=10)
 
     def start_booking_for_customer(self, customer):  # Open the booking tab and pre-select the given customer
@@ -173,7 +179,7 @@ class MeetingProApp(tk.Tk):
             """Cancel and return to add tab."""
             self.tab_add(frame)
 
-        ttk.Button(frame, text="Validate", command=validate, style="Blue.TButton").grid(row=3, column=0, pady=10)
+        ttk.Button(frame, text="Validate", command=validate, style="Black.TButton").grid(row=3, column=0, pady=10)
         ttk.Button(frame, text="Cancel", command=cancel).grid(row=3, column=1, pady=10)
 
     def tab_book(self, frame, preselected_customer=None):  # Booking tab: step 1 - select customer, date, and time
@@ -321,17 +327,17 @@ class MeetingProApp(tk.Tk):
                 messagebox.showinfo("Success", f"Room {selected_room.id} booked for {customer_name}!")  # Success message
                 self.tab_control.select(self.tabs['Home'])  # Return to home tab
 
-            btn_confirm = ttk.Button(frame, text="Confirm booking", command=confirm_booking, style="Blue.TButton")
+            btn_confirm = ttk.Button(frame, text="Confirm booking", command=confirm_booking, style="Black.TButton")
             btn_confirm.grid(row=8, column=0, columnspan=2, pady=10)
             btn_confirm.is_dynamic = True
 
-        ttk.Button(frame, text="Search available rooms", command=search_rooms, style="Blue.TButton").grid(row=9, column=0, columnspan=2, pady=15)
+        ttk.Button(frame, text="Search available rooms", command=search_rooms, style="Black.TButton").grid(row=9, column=0, columnspan=2, pady=15)
 
     def tab_display(self, frame):  # Display tab: show customers, rooms, reservations, and availability
         """Display tab: show customers, rooms, reservations, and availability."""
         for widget in frame.winfo_children():
             widget.destroy()  # Clear previous widgets
-        tree = ttk.Treeview(frame)
+        tree = ttk.Treeview(frame) # Create a treeview to display datas 
         tree.pack(expand=True, fill="both", pady=10)
 
         # Increase row height for better readability
@@ -420,10 +426,10 @@ class MeetingProApp(tk.Tk):
                 tree.insert('', 'end', text=str(i), values=(room_obj.id, room_obj.capacity, room_type, slots_str))
 
         # Buttons to display each category, all in blue style
-        btn_customers = ttk.Button(frame, text="Show Customers", command=show_customers, style="Blue.TButton")
-        btn_rooms = ttk.Button(frame, text="Show Rooms", command=show_rooms, style="Blue.TButton")
-        btn_reservations = ttk.Button(frame, text="Show Reservations", command=show_reservations, style="Blue.TButton")
-        btn_availability = ttk.Button(frame, text="Show Availability", command=show_availability, style="Blue.TButton")
+        btn_customers = ttk.Button(frame, text="Show Customers", command=show_customers, style="Black.TButton")
+        btn_rooms = ttk.Button(frame, text="Show Rooms", command=show_rooms, style="Black.TButton")
+        btn_reservations = ttk.Button(frame, text="Show Reservations", command=show_reservations, style="Black.TButton")
+        btn_availability = ttk.Button(frame, text="Show Availability", command=show_availability, style="Black.TButton")
         btn_customers.pack(pady=5)
         btn_rooms.pack(pady=5)
         btn_reservations.pack(pady=5)

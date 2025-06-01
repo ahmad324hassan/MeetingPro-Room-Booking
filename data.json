@@ -2,26 +2,15 @@
     "customers": [
         {
             "id": "fa7fae7f-a8f5-4d9d-a169-21a16dc8eb4f",
-            "name": "Hassan ",
-            "surname": "Ahmad",
+            "name": "Ahmad",
+            "surname": "Hassan",
             "email": "ahmad.hassan@uha.fr"
         },
-        {
-            "id": "aac97e9d-f89b-4358-a45e-a4b85273eecc",
-            "name": "Bismuth",
-            "surname": "Dorian",
-            "email": "dorianbismuth@gmail.com"
-        },
-        {
-            "id": "8827d96a-0863-4601-b6b4-9df065f28a40",
-            "name": "1",
-            "surname": "3",
-            "email": "aaaaaaaaa@gmail.com"
-        },
+
         {
             "id": "af123617-8223-4e39-920b-63331ba65230",
-            "name": "Bismuth",
-            "surname": "Dorian",
+            "name": "Dorian",
+            "surname": "Bismuth",
             "email": "dorian.bismuth@uha.fr"
         }
     ],
