@@ -1,8 +1,8 @@
 [project]
-name = "weather"
+name = "MeetingProApp"
 version = "0.1.0"
-description = ""
-authors = [{ name = "John Doe", email = "john.doe@gmail.com" }]
+description = "Projet MeetingProApp fini"
+authors = [{ name = "Dorian Bismuth", email = "dorian.bismuth@uha.fr" }, { name = "Ahmad Hassan", email = "ahmad.hassan@uha.fr" }]
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "BSD-3-Clause" }

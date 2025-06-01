@@ -6,7 +6,6 @@
             "surname": "Hassan",
             "email": "ahmad.hassan@uha.fr"
         },
-
         {
             "id": "af123617-8223-4e39-920b-63331ba65230",
             "name": "Dorian",
@@ -54,6 +53,15 @@
         {
             "id": "Conference1.2",
             "capacity": 10,
+            "room_type": {
+                "Standard": "No",
+                "Conference": "Yes",
+                "Informatics": "No"
+            }
+        },
+        {
+            "id": "Conference5",
+            "capacity": 9,
             "room_type": {
                 "Standard": "No",
                 "Conference": "Yes",
